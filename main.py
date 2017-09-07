@@ -22,6 +22,7 @@ pwm = Adafruit_PCA9685.PCA9685()
 #	def pwm.set_all_pwm(self, on, off):
 #		self._device.write16(0xFA
 
+
 def signal_handler(signal,frame):
   print("Shutting down")
   pwm.set_all_pwm(0,0)
@@ -29,10 +30,14 @@ def signal_handler(signal,frame):
 
 signal.signal(signal.SIGINT, signal_handler)
 
-def stand():
-  user = input("Enter number: ")
-  pwm.set_all_tri_pwm(user,400,460,user,user,540,user,350,270)
 
+def stand():
+  pwm.set_all_tri_pwm(380,400,460,300,400,540,375,350,270)
+def walk():
+  user = input("460 : ")
+  pwm.set_all_tri_pwm(380,400,550,300,400,400,375,350,270)
+  sleep(0.2)
+  pwm.set_all_tri_pwm(380,400,200,300,400,user,375,350,270) 
 
 ##Set frequency to 60hz, good for servos.
 pwm.set_pwm_freq(60)
@@ -41,5 +46,9 @@ print('Moving servo on channel 0, press Ctrl-C to quit...')
 num = 0.1
 while True:
 #    Move servo on channel O between extremes.
-  stand()    
+
+  stand()
+  sleep(0.5)
+  walk()
+  sleep(0.5)    
 
