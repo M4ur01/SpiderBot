@@ -32,7 +32,8 @@ signal.signal(signal.SIGINT, signal_handler)
 
 
 def stand():
-  pwm.set_all_tri_pwm(380,400,460,300,400,540,375,350,270)
+  user = input("Leg2seg3: ")
+  pwm.set_all_tri_pwm(380,400,460,300,400,380,375,350,270)
 def walk():
   user = input("460 : ")
   pwm.set_all_tri_pwm(380,400,550,300,400,400,375,350,270)
@@ -48,7 +49,7 @@ while True:
 #    Move servo on channel O between extremes.
 
   stand()
-  sleep(0.5)
-  walk()
-  sleep(0.5)    
+  ##sleep(0.5)
+  ##walk()
+  ##sleep(0.5)    
 
